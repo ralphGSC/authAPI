@@ -9,8 +9,8 @@ const authService = require('../services/auth-service');
 
 exports.post = async (req, res, next) => {
     try {
-        let bytes = utf8.encode(req.body.SENHA);
-        let senhaEncode = base64.encode(bytes);
+        //let bytes = utf8.encode(req.body.SENHA);
+        //let senhaEncode = base64.encode(bytes);
         let agent = req.headers['user-agent'];
         let ip = ipconfig.address();         
       
@@ -25,7 +25,7 @@ exports.post = async (req, res, next) => {
          // Obtém dados do usuário
         let usuario = await repository.getLogIN({
             LOGIN: req.body.LOGIN,
-            SENHA: senhaEncode
+            SENHA: req.body.SENHA
         });
 
         // Verificar se autenticação
