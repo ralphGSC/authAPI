@@ -12,9 +12,11 @@ const autenticacaoRoute = require('./routes/autenticacao-route');
 const dbConfig = require('./config');
 const db = require('./services/database-service');
 
-const defaultThreadPoolSize = 4;
+const defaultThreadPoolSize = 20;
 
-process.env.UV_THREADPOOL_SIZE = dbConfig.threadPool.poolMax + defaultThreadPoolSize;
+process.env.UV_THREADPOOL_SIZE = dbConfig.connStringSepd.poolMax + defaultThreadPoolSize;
+
+//process.env.UV_THREADPOOL_SIZE = 10;
 
 async function startup() {
   try {

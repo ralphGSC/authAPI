@@ -5,10 +5,9 @@ module.exports = {
         "user": "sepd",
         "password": "sepd",
         "connectString": "gsc-dbora02/PGSC",
-    },
-    threadPool: {
-        "poolMin": 10,
-        "poolMax": 10,
-        "poolIncrement": 0
+        "poolMin": 0,
+        "poolMax": 4,
+        "poolIncrement": 1,
+        "poolTimeout"  : 0      
     }
 };

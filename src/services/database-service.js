@@ -3,8 +3,7 @@
 const oracledb = require('oracledb');
 const dbConfig = require('../config');
 
-async function initialize() {  
-  
+async function initialize() {   
   const pool = await oracledb.createPool(dbConfig.connStringSepd);
 }
 
@@ -22,8 +21,8 @@ function comandText(statement, binds = [], opts = {}) {
     opts.outFormat = oracledb.OBJECT;
     opts.autoCommit = true;
     
-    try {
-      conn = await oracledb.getConnection();
+    try {         
+      conn = await oracledb.getConnection();     
       const result = await conn.execute(statement, binds, opts);
 
       resolve(result);
@@ -32,8 +31,8 @@ function comandText(statement, binds = [], opts = {}) {
       console.log(err);
     } finally {
       if (conn) {
-        try {
-          await conn.close();
+        try {         
+          await conn.close();      
         } catch (err) {
           console.log(err);
         }
