@@ -16,8 +16,6 @@ const defaultThreadPoolSize = 20;
 
 process.env.UV_THREADPOOL_SIZE = dbConfig.connStringSepd.poolMax + defaultThreadPoolSize;
 
-//process.env.UV_THREADPOOL_SIZE = 10;
-
 async function startup() {
   try {
     console.log('Iniciando banco de dados...');
