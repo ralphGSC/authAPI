@@ -22,11 +22,16 @@ exports.post = async (req, res, next) => {
             return;
         }  
      
-         // Obtém dados do usuário
-        let usuario = await repository.getLogIN({
+        // Obtém dados do usuário
+        let usuario = await repository.getUsuario({
             LOGIN: req.body.LOGIN,
             SENHA: req.body.SENHA
         });
+      
+        // Obtém dados do funcionário
+        let funcionario = await repository.getFuncionario({
+            CHAPA: usuario.MATRICULA
+        });      
 
         // Verificar se autenticação
         if (!usuario) {
@@ -72,7 +77,8 @@ exports.post = async (req, res, next) => {
                 NOME_USUARIO: usuario.NOME_USUARIO,
                 EMAIL: usuario.EMAIL
             },
-            PERMISSOES: permissoes
+            FUNCIONARIO: funcionario,
+            PERMISSOES: permissoes            
         });
        
     } catch (e) {

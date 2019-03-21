@@ -2,11 +2,20 @@
 
 const db = require('../services/database-service');
 
-exports.getLogIN = async (data) => {   
+exports.getUsuario = async (data) => {   
     const res = await db.comandText(`SELECT COD_USUARIO, LOGIN, 
                                             MATRICULA, NOME_USUARIO, EMAIL
                                        FROM SPD_USUARIO 
                                       WHERE LOGIN = '${data.LOGIN}' AND SENHA = '${data.SENHA}'`);
+    return res.rows[0];
+}
+
+exports.getFuncionario = async (data) => {   
+    const res = await db.comandText(`SELECT CHAPA, CODSITUACAO, DATAADMISSAO,
+                                            CENTROCUSTO, GERENCIA, CODSECAO, NOMEGERENCIA, 
+                                            FUNCAO, IMAGEM
+                                       FROM VW_SCF_FUNCIONARIO_RM  
+                                      WHERE CHAPA = '${data.CHAPA}'`);
     return res.rows[0];
 }
 
