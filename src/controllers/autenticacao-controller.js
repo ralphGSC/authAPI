@@ -16,9 +16,10 @@ exports.post = async (req, res, next) => {
       
         // Verifica se foi informado o COD_SISTEMA no body
         if(req.body.COD_SISTEMA == undefined){
-            res.status(400).send({              
+            res.status(400).send([{
+                COD: 400,              
                 MSN: 'Favor informar código do sistema'
-            });
+            }]);
             return;
         }  
      
@@ -48,9 +49,10 @@ exports.post = async (req, res, next) => {
         });           
 
         if (permissoes.length == 0) {
-            res.status(404).send({              
+            res.status(404).send([{
+                COD: 404,                 
                 MSN: 'Acesso negado ao sistema: ' + req.body.COD_SISTEMA 
-            });
+            }]);
             return;
         }
 
@@ -81,10 +83,10 @@ exports.post = async (req, res, next) => {
             PERMISSOES: permissoes            
         });
        
-    } catch (e) {
-        console.log(e);
-        res.status(500).send({           
+    } catch (e) {       
+        res.status(500).send([{
+            COD: 500,            
             MSN: 'Falha ao processar requisição'
-        });
+        }]);
     }
 };
